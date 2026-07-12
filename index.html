@@ -581,6 +581,18 @@
   </footer>
 
 <script>
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  let isPlaying = false;
+  musicToggle.addEventListener('click', () => {
+    if (isPlaying) {
+      bgMusic.pause();
+    } else {
+      bgMusic.play().catch(() => {});
+    }
+    isPlaying = !isPlaying;
+    musicToggle.classList.toggle('playing', isPlaying);
+  });
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
