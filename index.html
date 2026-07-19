@@ -636,6 +636,64 @@
   }
   langButtons.forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
 
+// ---- Photo album ----
+  // Add up to 10 photos. Drop the image files next to this page (photo-3.jpg,
+  // photo-4.jpg, ...) and add a matching entry below — nothing else needs to change.
+  const albumPhotos = [
+    { src:'photo-1.jpg', alt:'Jun Bin and Jing Jing dancing on a hilltop', en:'Our first dance under an open sky', zh:'在山丘上翩翩起舞' },
+    { src:'photo-2.jpg', alt:'Jun Bin and Jing Jing walking together outdoors', en:'Wandering the old streets together', zh:'漫步旧街小巷' }
+  ];
+
+  const albumTop = document.getElementById('albumTop');
+  const albumTopImg = document.getElementById('albumTopImg');
+  const albumUnderImg = document.getElementById('albumUnderImg');
+  const albumCounter = document.getElementById('albumCounter');
+  const albumCaption = document.getElementById('albumCaption');
+  const albumPrev = document.getElementById('albumPrev');
+  const albumNext = document.getElementById('albumNext');
+  let albumIndex = 0;
+  let albumFlipping = false;
+
+  function renderAlbum(){
+    const photo = albumPhotos[albumIndex];
+    const nextPhoto = albumPhotos[(albumIndex + 1) % albumPhotos.length];
+    albumTopImg.src = photo.src;
+    albumTopImg.alt = photo.alt;
+    albumUnderImg.src = nextPhoto.src;
+    albumUnderImg.alt = nextPhoto.alt;
+    albumCounter.textContent = String(albumIndex + 1).padStart(2,'0') + ' / ' + String(albumPhotos.length).padStart(2,'0');
+    const isZhNow = document.body.classList.contains('lang-zh');
+    albumCaption.textContent = isZhNow ? photo.zh : photo.en;
+    albumPrev.disabled = albumPhotos.length < 2;
+    albumNext.disabled = albumPhotos.length < 2;
+  }
+
+  function albumNextPage(){
+    if (albumFlipping || albumPhotos.length < 2) return;
+    albumFlipping = true;
+    albumTop.style.transform = 'rotateY(-160deg)';
+    setTimeout(() => {
+      albumIndex = (albumIndex + 1) % albumPhotos.length;
+      albumTop.style.transition = 'none';
+      albumTop.style.transform = 'rotateY(0deg)';
+      renderAlbum();
+      void albumTop.offsetWidth;
+      albumTop.style.transition = 'transform .8s cubic-bezier(.61,.03,.35,1)';
+      albumFlipping = false;
+    }, 800);
+  }
+
+  function albumPrevPage(){
+    if (albumFlipping || albumPhotos.length < 2) return;
+    albumIndex = (albumIndex - 1 + albumPhotos.length) % albumPhotos.length;
+    renderAlbum();
+  }
+
+  albumNext.addEventListener('click', albumNextPage);
+  albumPrev.addEventListener('click', albumPrevPage);
+  langButtons.forEach(b => b.addEventListener('click', renderAlbum));
+  renderAlbum();
+  
   const targetDate = new Date('2026-12-06T00:00:00+08:00').getTime();
   function updateCountdown(){
     const now = Date.now();
