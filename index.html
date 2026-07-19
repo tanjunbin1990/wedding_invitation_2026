@@ -112,7 +112,11 @@
   background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.45)),url("background.jpg");
   background-size:cover;background-position:center center;background-repeat:no-repeat;color:#fff;
 }
-  .hero .eyebrow{ opacity:0; animation:riseIn 1s ease forwards 1.6s; margin-bottom:22px; }
+  .hero .eyebrow{ 
+    opacity:0; 
+    animation:riseIn 1s ease forwards 1.6s; 
+    margin-top: -10px;    /* Pulls the text up closer to the monogram line */
+    margin-bottom:22px; }
 
   .monogram{ width:190px; height:auto; margin-bottom:10px; overflow:visible; }
   .monogram-letters{
@@ -491,7 +495,7 @@
   <section class="hero">
     <svg class="monogram" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg">
       <text x="110" y="25" text-anchor="middle" class="monogram-letters">J &amp; J</text>
-      <path class="monogram-line" d="M60 62 L160 72" />
+      <path class="monogram-line" d="M60 62 L160 62" />
     </svg>
     <p class="eyebrow" data-en="Together with their families" data-zh="与家人共同呈献">Together with their families</p>
     <h1 data-en-html="Jun Bin <em>&amp;</em> Jing Jing" data-zh-html="俊彬 <em>&amp;</em> 曉君">Jun Bin <em>&amp;</em> Jing Jing</h1>
