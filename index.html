@@ -587,6 +587,34 @@
           <input type="number" id="guests" name="guests" min="1" max="10" placeholder="1" />
         </div>
 
+        <!-- Insert this inside your form, right above the Message field -->
+<div class="field">
+  <label for="relationship" data-en="How do you know the newlyweds?" data-zh="您是如何结识这对新人的？">How do you know the newlyweds?</label>
+  <select id="relationship" name="relationship" style="
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line-strong);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 10px 2px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  " required>
+    <option value="" disabled selected data-en="Select an option..." data-zh="请选择一个选项...">Select an option...</option>
+    <option value="Groom's Family" data-en="Groom's Family" data-zh="新郎家人">Groom's Family</option>
+    <option value="Bride's Family" data-en="Bride's Family" data-zh="新娘家人">Bride's Family</option>
+    <option value="Groom's Friend" data-en="Groom's Friend" data-zh="新郎朋友/同学/同事">Groom's Friend</option>
+    <option value="Bride's Friend" data-en="Bride's Friend" data-zh="新娘朋友/同学/同事">Bride's Friend</option>
+    <option value="Mutual Friends" data-en="Mutual Friends" data-zh="共同朋友">Mutual Friends</option>
+  </select>
+</div>
+        
         <div class="field">
           <label for="message" data-en="Message (optional)" data-zh="留言（可选）">Message (optional)</label>
           <textarea id="message" name="message" data-ph-en="Dietary needs, well wishes, anything at all" data-ph-zh="饮食需求、祝福语，或任何想说的话" placeholder="Dietary needs, well wishes, anything at all"></textarea>
